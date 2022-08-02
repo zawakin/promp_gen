@@ -17,28 +17,28 @@ class PromptGenerator():
         self.formats = self.prompt_generator_data['formats']
 
         # Characters and scenarios:
-        with open('character_data/characters.json') as f:
+        with open('prompt_gen/character_data/characters.json') as f:
             self.characters = json.load(f)
 
-        with open('scenario_data/scenarios.json') as f:
+        with open('prompt_gen/scenario_data/scenarios.json') as f:
             self.scenarios = json.load(f)
 
     def import_prompt_data(self):
-        with open('prompt-generator.json', 'r') as f:
+        with open('prompt_gen/prompt-generator.json', 'r') as f:
             return json.load(f)
 
     @property
     def landmarks(self) -> List[str]:
-        with open('location_data/landmarks.json') as f:
+        with open('prompt_gen/location_data/landmarks.json') as f:
             return json.load(f)
 
     @property
     def cities(self) -> List[str]:
-        return pd.read_csv('location_data/cities.csv')['city'].tolist()
+        return pd.read_csv('prompt_gen/location_data/cities.csv')['city'].tolist()
 
     @property
     def backgrounds(self) -> List[str]:
-        with open('location_data/backgrounds.json') as f:
+        with open('prompt_gen/location_data/backgrounds.json') as f:
             return json.load(f)
 
     def get_random_index(self, list_to_choose_from: list) -> int:
@@ -70,12 +70,12 @@ class PromptGenerator():
         return self.landmarks[self.get_random_index(self.landmarks)]
 
     def get_random_character(self) -> str:
-        with open('character_data/characters.json') as f:
+        with open('prompt_gen/character_data/characters.json') as f:
             characters = json.load(f)
         return random.choice(characters)
 
     def get_random_scenario(self) -> str:
-        with open('scenario_data/scenarios.json') as f:
+        with open('prompt_gen/scenario_data/scenarios.json') as f:
             scenarios = json.load(f)
         return random.choice(scenarios)
 
@@ -110,7 +110,7 @@ class PromptGenerator():
         ]
 
         params = {'location': location, 'perspective': perspective, 'format': format,
-                  'vibe': vibe,  'booster': booster, }
+                  'vibe': vibe, 'booster': booster, }
         for key, value in params.items():
             if value is not None:
                 if key == 'location':

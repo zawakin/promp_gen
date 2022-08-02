@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 
 def setup_package():
-    package_name = "prompt_generator"
+    package_name = "prompt_gen"
     root = os.path.abspath(os.path.dirname(__file__))
 
     # Read in package meta from about.py
@@ -32,7 +32,7 @@ def setup_package():
         version=about["__version__"],
         license=about["__license__"],
         packages=find_packages(),
-        install_requires=[],
+        install_requires=['numpy', 'pandas'],
         zip_safe=True,
     )
 

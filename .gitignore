@@ -1,5 +1,6 @@
 # Build scripts:
-install_project_build.sh
+dev_environment.sh
+dev_requirements.txt
 TestsToCreate.txt
 
 .vscode/
