@@ -34,6 +34,25 @@ prompt_model = PromptGenerator()
 
 If you don't include any of the arguments above, then defaults will be included within your image prompts.
 
+## &nbsp;
+
+### <kbd>properties</kbd>
+
+```python
+from prompt_gen import PromptGenerator
+prompt_model = PromptGenerator()
+prompt_model.styles # Returns a list of styles
+prompt_model.perspectives # Returns a list of perspectives
+prompt_model.vibes # Returns a list of vibes
+prompt_model.boosters # Returns a list of boosters
+prompt_model.formats # Returns a list of formats
+prompt_model.characters # Returns a list of characters
+prompt_model.scenarios # Returns a list of scenarios
+prompt_model.locations # Returns a list of locations
+```
+
+## &nbsp;
+
 ## Resources:
 
 - Prompt Generator: https://docs.google.com/spreadsheets/d/1TWYoCaPVPllyoZyjOhnPeojfzgTbppMDhpK_r87-duM/edit
@@ -77,3 +96,7 @@ These include for example `from behind`, `from above`, `from the side` etc.
 ## Vibes/Boosters act as a style:
 
 Vibes/Boosters are a different way to describe the style.
+
+```
+
+```
