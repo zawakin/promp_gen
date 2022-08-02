@@ -42,10 +42,6 @@ If you don't include any of the arguments above, then defaults will be included 
 
 ---
 
-## Usage:
-
----
-
 # Different parts of what makes a good prompt for AI:
 
 ## Locations:
