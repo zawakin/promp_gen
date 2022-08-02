@@ -1,6 +1,6 @@
 from generator import PromptGenerator
 
-prompt_gen_model = PromptGenerator()
+prompt_model = PromptGenerator()
 
 # Properties:
 # print(prompt_gen_model.backgrounds)
@@ -18,6 +18,6 @@ prompt_gen_model = PromptGenerator()
 # print(prompt)
 
 
-prompts = prompt_gen_model.generate_prompts()
+prompts = prompt_model.generate_random_prompts()
 for prompt in prompts:
     print(prompt)

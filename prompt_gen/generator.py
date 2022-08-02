@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from typing import List
 import random
-from util import _validate_all_inputs_are_strings_in_a_list_and_not_empty
+from prompt_gen.util import _validate_all_inputs_are_strings_in_a_list_and_not_empty
 
 
 class PromptGenerator():
@@ -63,7 +63,7 @@ class PromptGenerator():
             self.scenarios = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
                 scenarios)
         if locations is None:
-            with open('location_data/landmarks.json') as f:
+            with open('prompt_gen/location_data/landmarks.json') as f:
                 self.locations = json.load(f)
         else:
             self.locations = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
