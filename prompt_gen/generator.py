@@ -2,26 +2,72 @@ import json
 import pandas as pd
 from typing import List
 import random
+from util import _validate_all_inputs_are_strings_in_a_list_and_not_empty
 
 
 class PromptGenerator():
-    def __init__(self):
-        self.prompts = []
-        self.prompt_df = pd.DataFrame()
+    def __init__(self, styles: List[str] = None, perspectives: List[str] = None, vibes: List[str] = None,
+                 boosters: List[str] = None, formats: List[str] = None,
+                 characters: List[str] = None, scenarios: List[str] = None, locations: List[str] = None):
+        """A prompt engine to help with your image prompt creation ideas for DALLE-2, MidJourney and other tools.
+
+        Args:
+            characters (List[str], optional): A list of characters. Defaults to None.
+            scenarios (List[str], optional): A list of actions that your characters are doing. Defaults to None.
+            vibes (List[str], optional): A list of words to give your prompts a specific vibe. Defaults to None.
+            boosters (List[str], optional): A list of words to give your prompts boosts. Defaults to None.
+            perspectives (List[str], optional): A list of perspectives that the image will be captured in. Defaults to None.
+            locations (List[str], optional): A list of locations (these could include famous landmarks, countries etc.). Defaults to None.
+            formats (List[str], optional): A list of art formats (i.e. oil painting, photo-realistic). Defaults to None.
+            styles (List[str], optional): _description_. Defaults to None.
+        """
+
         # Importing vibes/boosters, styles, perspectives and formats:
         self.prompt_generator_data = self.import_prompt_data()
-        self.styles = self.prompt_generator_data['styles']
-        self.perspectives = self.prompt_generator_data['perspectives']
-        self.vibes = self.prompt_generator_data['vibes']
-        self.boosters = self.prompt_generator_data['boosters']
-        self.formats = self.prompt_generator_data['formats']
+        if styles is None:
+            self.styles = self.prompt_generator_data['styles']
+        else:
+            self.styles = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                styles)
 
-        # Characters and scenarios:
-        with open('prompt_gen/character_data/characters.json') as f:
-            self.characters = json.load(f)
-
-        with open('prompt_gen/scenario_data/scenarios.json') as f:
-            self.scenarios = json.load(f)
+        if perspectives is None:
+            self.perspectives = self.prompt_generator_data['perspectives']
+        else:
+            self.perspectives = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                perspectives)
+        if vibes is None:
+            self.vibes = self.prompt_generator_data['vibes']
+        else:
+            self.vibes = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                vibes)
+        if boosters is None:
+            self.boosters = self.prompt_generator_data['boosters']
+        else:
+            self.boosters = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                boosters)
+        if formats is None:
+            self.formats = self.prompt_generator_data['formats']
+        else:
+            self.formats = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                formats)
+        if characters is None:
+            with open('prompt_gen/character_data/characters.json') as f:
+                self.characters = json.load(f)
+        else:
+            self.characters = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                characters)
+        if scenarios is None:
+            with open('prompt_gen/scenario_data/scenarios.json') as f:
+                self.scenarios = json.load(f)
+        else:
+            self.scenarios = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                scenarios)
+        if locations is None:
+            with open('location_data/landmarks.json') as f:
+                self.locations = json.load(f)
+        else:
+            self.locations = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
+                locations)
 
     def import_prompt_data(self):
         with open('prompt_gen/prompt-generator.json', 'r') as f:
@@ -80,16 +126,33 @@ class PromptGenerator():
         return random.choice(scenarios)
 
     def get_random_location(self) -> str:
-        """
-        Returns a random location from the location data.
-        """
         return random.choice(self.backgrounds)
 
     def generate_single_prompt(self, vibe: str = None, booster: str = None, perspective: str = None,
                                location: str = None, character: str = None, scenario: str = None, format: str = None,
                                use_vibe: bool = False, use_perspective: bool = False, use_booster: bool = False) -> str:
-        """
-        Generates a prompt based on the prompts in the prompt-generator.json file.
+        """Generates a prompt based on the prompts in the prompt-generator.json file. If you do not provide any of the formats, then by 
+        default all of them will be included. However vibe, perspective, booster are optional and if you want to use them, then remember to set `True`
+        for the use_vibe, use_perspective, use_booster arguments.
+
+        Args:
+            vibe (str, optional): A vibe to improve your image prompt. Defaults to None.
+            booster (str, optional): A booster to improve your image prompt. Defaults to None.
+            perspective (str, optional): A perspective such as 'From behind', often this is associated with a camera angle. Defaults to None.
+            location (str, optional): A location such as 'Big Ben' . Defaults to None.
+            character (str, optional): A character such as 'Donald Duck'. Defaults to None.
+            scenario (str, optional): A scenario of what your character is doing, i.e. 'swimming' or 'dancing' . Defaults to None.
+            format (str, optional): A format of the image prompt such as 'oil painting' or 'photo-realistic'. Defaults to None.
+            use_vibe (bool, optional): A boolean to opt into adding a vibe to your image prompt. Defaults to False.
+            use_perspective (bool, optional): A boolean to opt into adding a perspective to your image prompt. Defaults to False.
+            use_booster (bool, optional): A boolean to opt into adding a booster to your image prompt. Defaults to False.
+
+        Raises:
+            ValueError: _description_
+            ValueError: _description_
+
+        Returns:
+            str: _description_
         """
         if character is None:
             raise ValueError(
@@ -145,17 +208,29 @@ class PromptGenerator():
 
         return prompt.lower().capitalize()
 
-    def generate_prompts(self,
-                         characters: List[str] = None,
-                         scenarios: List[str] = None,
-                         vibes: List[str] = None,
-                         boosters: List[str] = None,
-                         perspectives: List[str] = None,
-                         locations: List[str] = None,
-                         formats: List[str] = None,
-                         number_of_prompts: int = 10) -> List[str]:
-        """
-        Generates all known combinations for the following parameters:
+    def generate_random_prompts(self,
+                                characters: List[str] = None,
+                                scenarios: List[str] = None,
+                                vibes: List[str] = None,
+                                boosters: List[str] = None,
+                                perspectives: List[str] = None,
+                                locations: List[str] = None,
+                                formats: List[str] = None,
+                                number_of_prompts: int = 10) -> List[str]:
+        """A function to generate a list of random prompts.
+
+        Args:
+            characters (List[str], optional): A list of characters. Defaults to None.
+            scenarios (List[str], optional): A list of actions that your characters are doing. Defaults to None.
+            vibes (List[str], optional): A list of words to give your prompts a specific vibe. Defaults to None.
+            boosters (List[str], optional): A list of words to give your prompts boosts. Defaults to None.
+            perspectives (List[str], optional): A list of perspectives that the image will be captured in. Defaults to None.
+            locations (List[str], optional): A list of locations (these could include famous landmarks, countries etc.). Defaults to None.
+            formats (List[str], optional): A list of art formats (i.e. oil painting, photo-realistic). Defaults to None.
+            number_of_prompts (int, optional): How many prompts you want to generate, be aware that if you do too many it might take too long. Defaults to 10.
+
+        Returns:
+            List[str]: Returns a list of string prompts.
         """
         # Loop over all of the arguments and see if any are none then use the self.
         # If all are none, then use the self.
@@ -170,8 +245,11 @@ class PromptGenerator():
         if perspectives is None:
             perspectives = self.prompt_generator_data['perspectives']
         if locations is None:
-            with open('location_data/landmarks.json') as f:
-                locations = json.load(f)
+            if self.locations is None:
+                with open('location_data/landmarks.json') as f:
+                    locations = json.load(f)
+            else:
+                locations = self.locations
         if formats is None:
             formats = self.prompt_generator_data['formats']
 
