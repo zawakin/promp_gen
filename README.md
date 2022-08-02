@@ -1,4 +1,4 @@
-# Prompt Engineering
+# prompt_gen
 
 A python package for automating your Prommpt Engineering workflows.
 
