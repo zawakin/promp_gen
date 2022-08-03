@@ -59,7 +59,7 @@ prompt_model.locations # Returns a list of locations
 
 &nbsp;
 
-#### <kbd>method</kbd> `PromptGenerator.generate_single_prompt()`
+#### <kbd>method</kbd> `PromptGenerator.generate_single_prompt`
 
 ```python
 prompt_model = PromptGenerator()
@@ -92,7 +92,7 @@ print(f"This is a single prompt: {prompt}")
 
 &nbsp;
 
-#### <kbd>method</kbd> `PromptGenerator.generate_random_prompts()`
+#### <kbd>method</kbd> `PromptGenerator.generate_random_prompts`
 
 ```python
 prompt_model = PromptGenerator()
