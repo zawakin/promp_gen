@@ -20,6 +20,13 @@ def get_prompt_model_with_args():
         locations=['location1', 'location2'])
 
 
+def test_loading_class_with_args(get_prompt_model_with_args):
+    assert isinstance(
+        get_prompt_model_with_args.generate_random_prompts(), list)
+    assert isinstance(
+        get_prompt_model_with_args.generate_random_prompts()[0], str)
+
+
 @pytest.mark.parametrize('args', [
     {'styles': ['style1', 'style2']},
     {'perspectives': ['perspective1', 'perspective2']},
