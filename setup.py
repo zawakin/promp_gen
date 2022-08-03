@@ -32,6 +32,8 @@ def setup_package():
         version=about["__version__"],
         license=about["__license__"],
         packages=find_packages(),
+        keywords=["prompt", "generator", "prompt_gen",
+                  "ai_art", "art", "dalle", "dalle2", "midjourney", "dalle3"],
         install_requires=['numpy', 'pandas'],
         zip_safe=True,
     )

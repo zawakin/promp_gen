@@ -22,17 +22,17 @@ from prompt_gen import PromptGenerator
 prompt_model = PromptGenerator()
 ```
 
-| Argument       | Type      | Description                                                                                              | Default |
-| -------------- | --------- | -------------------------------------------------------------------------------------------------------- | ------- |
-| `styles`       | List[str] | Styles such as `['fauvism', 'cubism', 'abstract']`                                                       | `None`  |
-| `perspectives` | List[str] | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']` | `None`  |
-| `vibes`        | List[str] | Vibes are a way to add a look/theme to your image prompts.                                               | `None`  |
-| `boosters`     | List[str] | Boosters are an alternative way to add a look/theme to your image prompts.                               | `None`  |
-| `formats`      | List[str] | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc                         | `None`  |
-| `characters`   | List[str] | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                     | `None`  |
-| `scenarios`    | List[str] | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`             | `None`  |
-| `locations`    | List[str] | A list of locations such as `['New York', 'Big Ben']`                                                    | `None`  |
-| **RETURNS**    | `Printer` | The initialized PromptGenerator.                                                                         | -       |
+| Argument       | Type        | Description                                                                                              | Default |
+| -------------- | ----------- | -------------------------------------------------------------------------------------------------------- | ------- |
+| `styles`       | `List[str]` | Styles such as `['fauvism', 'cubism', 'abstract']`                                                       | `None`  |
+| `perspectives` | `List[str]` | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']` | `None`  |
+| `vibes`        | `List[str]` | Vibes are a way to add a look/theme to your image prompts.                                               | `None`  |
+| `boosters`     | `List[str]` | Boosters are an alternative way to add a look/theme to your image prompts.                               | `None`  |
+| `formats`      | `List[str]` | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc                         | `None`  |
+| `characters`   | `List[str]` | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                     | `None`  |
+| `scenarios`    | `List[str]` | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`             | `None`  |
+| `locations`    | `List[str]` | A list of locations such as `['New York', 'Big Ben']`                                                    | `None`  |
+| **RETURNS**    | `Printer`   | The initialized PromptGenerator.                                                                         | -       |
 
 If you don't include any of the arguments above, then defaults will be included within your image prompts.
 
@@ -73,20 +73,20 @@ prompt = prompt_model.generate_single_prompt(use_vibe=True)
 print(f"This is a single prompt: {prompt}")
 ```
 
-| Argument          | Type | Description                                                                                               | Default |
-| ----------------- | ---- | --------------------------------------------------------------------------------------------------------- | ------- |
-| `style`           | str  | Styles such as fauvism, cubism or abstract                                                                | `None`  |
-| `perspective`     | str  | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
-| `vibe`            | str  | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
-| `booster`         | str  | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
-| `format`          | str  | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
-| `character`       | str  | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
-| `scenario`        | str  | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
-| `location`        | str  | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
-| `use_vibe`        | bool | A boolean to opt into adding a vibe to your image prompt. Defaults to False.                              | `False` |
-| `use_perspective` | bool | A boolean to opt into adding a perspective to your image prompt. Defaults to False.                       | `False` |
-| `use_booster`     | bool | A boolean to opt into adding a booster to your image prompt. Defaults to False.                           | `False` |
-| **RETURNS**       | str  | Returns a single generated text prompt.                                                                   | -       |
+| Argument          | Type   | Description                                                                                               | Default |
+| ----------------- | ------ | --------------------------------------------------------------------------------------------------------- | ------- |
+| `style`           | `str`  | Styles such as fauvism, cubism or abstract                                                                | `None`  |
+| `perspective`     | `str`  | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
+| `vibe`            | `str`  | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
+| `booster`         | `str`  | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
+| `format`          | `str`  | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
+| `character`       | `str`  | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
+| `scenario`        | `str`  | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
+| `location`        | `str`  | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
+| `use_vibe`        | `bool` | A boolean to opt into adding a vibe to your image prompt. Defaults to False.                              | `False` |
+| `use_perspective` | `bool` | A boolean to opt into adding a perspective to your image prompt. Defaults to False.                       | `False` |
+| `use_booster`     | `bool` | A boolean to opt into adding a booster to your image prompt. Defaults to False.                           | `False` |
+| **RETURNS**       | `str`  | Returns a single generated text prompt.                                                                   | -       |
 
 ---
 
@@ -117,20 +117,20 @@ prompts = prompt_model.generate_random_prompts(number_of_prompts=30, characters=
 print(f"This is a list of random prompts: {prompts}")
 ```
 
-| Argument          | Type      | Description                                                                                               | Default |
-| ----------------- | --------- | --------------------------------------------------------------------------------------------------------- | ------- |
-| `styles`          | List[str] | Styles such as `['fauvism', 'cubism']`                                                                    | `None`  |
-| `perspectives`    | List[str] | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
-| `vibes`           | List[str] | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
-| `boosters`        | List[str] | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
-| `formats`         | List[str] | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
-| `characters`      | List[str] | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
-| `scenarios`       | List[str] | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
-| `locations`       | List[str] | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
-| `use_vibe`        | bool      | A boolean to opt into adding a vibe for all your image prompts. Defaults to False.                        | `False` |
-| `use_perspective` | bool      | A boolean to opt into adding a perspectivefor all your image prompts. Defaults to False.                  | `False` |
-| `use_booster`     | bool      | A boolean to opt into adding a booster for all your image prompts. Defaults to False.                     | `False` |
-| **RETURNS**       | List[str] | Returns a list of randomly generated prompts.                                                             | -       |
+| Argument          | Type        | Description                                                                                               | Default |
+| ----------------- | ----------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| `styles`          | `List[str]` | Styles such as `['fauvism', 'cubism']`                                                                    | `None`  |
+| `perspectives`    | `List[str]` | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
+| `vibes`           | `List[str]` | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
+| `boosters`        | `List[str]` | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
+| `formats`         | `List[str]` | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
+| `characters`      | `List[str]` | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
+| `scenarios`       | `List[str]` | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
+| `locations`       | `List[str]` | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
+| `use_vibe`        | `bool`      | A boolean to opt into adding a vibe for all your image prompts. Defaults to False.                        | `False` |
+| `use_perspective` | `bool`      | A boolean to opt into adding a perspectivefor all your image prompts. Defaults to False.                  | `False` |
+| `use_booster`     | `bool`      | A boolean to opt into adding a booster for all your image prompts. Defaults to False.                     | `False` |
+| **RETURNS**       | `List[str]` | Returns a list of randomly generated prompts.                                                             | -       |
 
 ---
 
