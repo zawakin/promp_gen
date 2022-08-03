@@ -1,6 +1,8 @@
 # prompt_gen
 
-A python package for automating your Prommpt Engineering workflows - [https://github.com/Just-Understanding-Data-Ltd/promp_gen](https://github.com/Just-Understanding-Data-Ltd/promp_gen)
+A python package for automating your Prompt Engineering workflows - [https://github.com/Just-Understanding-Data-Ltd/promp_gen](https://github.com/Just-Understanding-Data-Ltd/promp_gen). This package helps you to get started with creating text to image prompts.
+
+There are several properties and methods that you can use to create prompts. Data has been populated using GPT and curating datasets.
 
 ## ⌛️ Installation
 
