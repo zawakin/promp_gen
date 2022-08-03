@@ -1,6 +1,6 @@
 # prompt_gen
 
-A python package for automating your Prommpt Engineering workflows.
+A python package for automating your Prommpt Engineering workflows - [https://github.com/Just-Understanding-Data-Ltd/promp_gen](https://github.com/Just-Understanding-Data-Ltd/promp_gen)
 
 ## ⌛️ Installation
 
