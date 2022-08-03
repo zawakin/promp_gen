@@ -96,8 +96,19 @@ print(f"This is a single prompt: {prompt}")
 
 ```python
 prompt_model = PromptGenerator()
-prompts = prompt_model.generate_random_prompts(number_of_prompts=30)
+prompts = prompt_model.generate_random_prompts(number_of_prompts=10)
 print(f"This is a list of random prompts: {prompts}")
+
+['Sauron, the dark lord playing video games in tikal in the format of a pixel art in a ancient egyptian art style',
+ '"beauty and the beast" (belle) playing an instrument or singing in palace of versailles in the format of a political cartoon from u.s. newspaper in a art deco style',
+ 'Austin powers boating in eiffel tower in the format of a illustration in a impressionist style',
+ 'Fleur delacour hiking in skara brae in the format of a studio photography in a game of thrones style',
+ 'Fleur delacour playing an instrument or singing in kinkaku-ji in the format of a professional corporate portrait in a renaissance style',
+ 'Legolas greenleaf shopping in the leaning tower of pisa in the format of a one-line drawing in a fauvism style',
+ 'Max goof going to a bar or club in the great wall of china in the format of a roman mosaic in a steampunk style',
+ 'James bond reading books or comics in giza necropolis in the format of a book cover in a realism style',
+ 'Percy weasley visiting a zoo or aquarium in giza necropolis in the format of a watercolor painting in a hudson river school style',
+ 'Cedric diggory taking a walk in uluru in the format of a album art cover in a 1990s disney, cel shading style']
 ```
 
 ```python
