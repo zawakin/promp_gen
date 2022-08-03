@@ -178,7 +178,7 @@ Vibes/Boosters are a different way to describe the style.
 
 ## Additional Resources:
 
-- [A visual prompt editing tool](tools.saxifrage.yx)
+- [A visual prompt editing tool](https://tools.saxifrage.xyz/prompt)
 - Prompt Generator: https://docs.google.com/spreadsheets/d/1TWYoCaPVPllyoZyjOhnPeojfzgTbppMDhpK_r87-duM/edit
 - Art Movements: https://artsandculture.google.com/category/art-movement?hl=en-GB
 - Artists: https://artsandculture.google.com/category/artist?hl=en-GB
