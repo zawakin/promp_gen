@@ -21,6 +21,8 @@ class PromptGenerator():
             formats (List[str], optional): A list of art formats (i.e. oil painting, photo-realistic). Defaults to None.
             styles (List[str], optional): _description_. Defaults to None.
         """
+        self.characters = None
+        self.scenarios = None
 
         # Importing vibes/boosters, styles, perspectives and formats:
         self.prompt_generator_data = self.import_prompt_data()
@@ -153,12 +155,18 @@ class PromptGenerator():
             str: A string of the generated prompt.
         """
         if character is None:
-            raise ValueError(
-                'Please provide a character to generate a prompt.')
+            if self.characters is None:
+                raise ValueError(
+                    'Please provide a character to generate a prompt.')
+            else:
+                character = self.get_random_character()
 
         if scenario is None:
-            raise ValueError(
-                'Please provide a scenario to generate a prompt.')
+            if self.scenarios is None:
+                raise ValueError(
+                    'Please provide a scenario to generate a prompt.')
+            else:
+                scenario = self.get_random_scenario()
 
         # Generating the initial prompt:
         prompt = f"{character} {scenario}"
@@ -247,6 +255,8 @@ class PromptGenerator():
         """
         # Loop over all of the arguments and see if any are none then use the self.
         # If all are none, then use the self.
+        if styles is None:
+            styles = self.styles
         if characters is None:
             characters = self.characters
         if scenarios is None:
@@ -270,7 +280,7 @@ class PromptGenerator():
         prompts = []
         for i in range(number_of_prompts):
             prompt = self.generate_single_prompt(
-                styles=random.choice(styles),
+                style=random.choice(styles),
                 character=random.choice(characters),
                 scenario=random.choice(scenarios),
                 vibe=random.choice(vibes),
