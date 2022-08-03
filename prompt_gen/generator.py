@@ -128,31 +128,29 @@ class PromptGenerator():
     def get_random_location(self) -> str:
         return random.choice(self.backgrounds)
 
-    def generate_single_prompt(self, vibe: str = None, booster: str = None, perspective: str = None,
-                               location: str = None, character: str = None, scenario: str = None, format: str = None,
+    def generate_single_prompt(self, style: str = None, perspective: str = None, vibe: str = None,
+                               booster: str = None, format: str = None,
+                               character: str = None, scenario: str = None, location: str = None,
                                use_vibe: bool = False, use_perspective: bool = False, use_booster: bool = False) -> str:
         """Generates a prompt based on the prompts in the prompt-generator.json file. If you do not provide any of the formats, then by 
         default all of them will be included. However vibe, perspective, booster are optional and if you want to use them, then remember to set `True`
         for the use_vibe, use_perspective, use_booster arguments.
 
         Args:
+            style (str, optional): A style for the prompt such as 'cubism' or 'abstract. Defaults to None.
+            perspective (str, optional): A perspective such as 'From behind', often this is associated with a camera angle. Defaults to None.
             vibe (str, optional): A vibe to improve your image prompt. Defaults to None.
             booster (str, optional): A booster to improve your image prompt. Defaults to None.
-            perspective (str, optional): A perspective such as 'From behind', often this is associated with a camera angle. Defaults to None.
-            location (str, optional): A location such as 'Big Ben' . Defaults to None.
+            format (str, optional): A format of the image prompt such as 'oil painting' or 'cartoon drawing'. Defaults to None.
             character (str, optional): A character such as 'Donald Duck'. Defaults to None.
             scenario (str, optional): A scenario of what your character is doing, i.e. 'swimming' or 'dancing' . Defaults to None.
-            format (str, optional): A format of the image prompt such as 'oil painting' or 'photo-realistic'. Defaults to None.
+            location (str, optional): A location such as 'Big Ben' . Defaults to None.
             use_vibe (bool, optional): A boolean to opt into adding a vibe to your image prompt. Defaults to False.
             use_perspective (bool, optional): A boolean to opt into adding a perspective to your image prompt. Defaults to False.
             use_booster (bool, optional): A boolean to opt into adding a booster to your image prompt. Defaults to False.
 
-        Raises:
-            ValueError: _description_
-            ValueError: _description_
-
         Returns:
-            str: _description_
+            str: A string of the generated prompt.
         """
         if character is None:
             raise ValueError(
@@ -173,7 +171,7 @@ class PromptGenerator():
         ]
 
         params = {'location': location, 'perspective': perspective, 'format': format,
-                  'vibe': vibe, 'booster': booster, }
+                  'vibe': vibe, 'booster': booster, 'style': style}
         for key, value in params.items():
             if value is not None:
                 if key == 'location':
@@ -189,44 +187,59 @@ class PromptGenerator():
                 elif key == 'booster':
                     if use_booster:
                         prompt += f" {value}"
+                elif key == 'style':
+
+                    prompt += f" in a {value} style"
                 else:
                     prompt += f" {value}"
             else:
                 if key == 'location':
                     prompt += f" at {random.choice(location_functions)()}"
+                elif key == 'perspective':
+                    if use_perspective:
+                        prompt += f" in a {self.get_random_perspective()} perspective"
+                elif key == 'format':
+                    prompt += f" in the format of a {self.get_random_format()}"
                 elif key == 'vibe':
                     if use_vibe:
                         prompt += f" {self.get_random_vibe()}"
                 elif key == 'booster':
                     if use_booster:
                         prompt += f" {self.get_random_booster()}"
-                elif key == 'perspective':
-                    if use_perspective:
-                        prompt += f" in a {self.get_random_perspective()} perspective"
-                elif key == 'format':
-                    prompt += f" in the format of a {self.get_random_format()}"
+                elif key == 'style':
+                    prompt += f" in a {self.get_random_style()} style"
+                else:
+                    prompt += f"{value}"
 
         return prompt.lower().capitalize()
 
     def generate_random_prompts(self,
-                                characters: List[str] = None,
-                                scenarios: List[str] = None,
+                                styles: List[str] = None,
+                                perspectives: List[str] = None,
                                 vibes: List[str] = None,
                                 boosters: List[str] = None,
-                                perspectives: List[str] = None,
-                                locations: List[str] = None,
                                 formats: List[str] = None,
+                                characters: List[str] = None,
+                                scenarios: List[str] = None,
+                                locations: List[str] = None,
+                                use_vibe: bool = False,
+                                use_booster: bool = False,
+                                use_perspective: bool = False,
                                 number_of_prompts: int = 10) -> List[str]:
         """A function to generate a list of random prompts.
 
         Args:
-            characters (List[str], optional): A list of characters. Defaults to None.
-            scenarios (List[str], optional): A list of actions that your characters are doing. Defaults to None.
+            styles (List[str], optional): A list of styles to generate prompts from, i.e ['cubism']. Defaults to None.
+            perspectives (List[str], optional): A list of perspectives that the image will be captured in. Defaults to None.
             vibes (List[str], optional): A list of words to give your prompts a specific vibe. Defaults to None.
             boosters (List[str], optional): A list of words to give your prompts boosts. Defaults to None.
-            perspectives (List[str], optional): A list of perspectives that the image will be captured in. Defaults to None.
-            locations (List[str], optional): A list of locations (these could include famous landmarks, countries etc.). Defaults to None.
             formats (List[str], optional): A list of art formats (i.e. oil painting, photo-realistic). Defaults to None.
+            characters (List[str], optional): A list of characters. Defaults to None.
+            scenarios (List[str], optional): A list of actions that your characters are doing. Defaults to None.
+            locations (List[str], optional): A list of locations (these could include famous landmarks, countries etc.). Defaults to None.
+            use_vibe (bool, optional): A boolean to opt into adding a vibe to your image prompt. Defaults to False.
+            use_booster (bool, optional): A boolean to opt into adding a booster to your image prompt. Defaults to False.
+            use_perspective (bool, optional): A boolean to opt into adding a perspective to your image prompt. Defaults to False.
             number_of_prompts (int, optional): How many prompts you want to generate, be aware that if you do too many it might take too long. Defaults to 10.
 
         Returns:
@@ -257,13 +270,16 @@ class PromptGenerator():
         prompts = []
         for i in range(number_of_prompts):
             prompt = self.generate_single_prompt(
+                styles=random.choice(styles),
                 character=random.choice(characters),
                 scenario=random.choice(scenarios),
                 vibe=random.choice(vibes),
                 booster=random.choice(boosters),
                 perspective=random.choice(perspectives),
                 location=random.choice(locations),
-                format=random.choice(formats)
-            )
+                format=random.choice(formats),
+                use_vibe=use_vibe,
+                use_booster=use_booster,
+                use_perspective=use_perspective)
             prompts.append(prompt)
         return prompts

@@ -12,6 +12,8 @@ pip install prompt_gen
 
 ### <kbd>class</kbd> `PromptGenerator`
 
+#### <kbd>method</kbd> `PromptGenerator.__init__`
+
 An instance of `PromptGenerator`, initialized with the default config. Useful as a quick
 shortcut if you don't need to customize initialization.
 
@@ -20,21 +22,23 @@ from prompt_gen import PromptGenerator
 prompt_model = PromptGenerator()
 ```
 
-| Argument       | Type      | Description                                                                                             | Default |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------------- | ------- |
-| `styles`       | List[str] | Styles such as fauvism, cubism or abstract                                                              | `False` |
-| `perspectives` | List[str] | Perspectives about the image prompt such as the angle which the shot has been taken in `[from behind]`. | `False` |
-| `vibes`        | List[str] | Vibes are a way to add a look/theme to your image prompts.                                              | `False` |
-| `boosters`     | List[str] | Boosters are an alternative way to add a look/theme to your image prompts.                              | `False` |
-| `formats`      | List[str] | Formats include `[oil painting`, `photo-realistic`, `cartoon drawing]` etc.                             | `False` |
-| `characters`   | List[str] | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                    | `False` |
-| `scenarios`    | List[str] | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`            | `False` |
-| `locations`    | List[str] | A list of locations such as `['New York', 'Big Ben']`                                                   | `False` |
-| **RETURNS**    | `Printer` | The initialized PromptGenerator.                                                                        | -       |
+| Argument       | Type      | Description                                                                                              | Default |
+| -------------- | --------- | -------------------------------------------------------------------------------------------------------- | ------- |
+| `styles`       | List[str] | Styles such as `['fauvism', 'cubism', 'abstract']`                                                       | `None`  |
+| `perspectives` | List[str] | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']` | `None`  |
+| `vibes`        | List[str] | Vibes are a way to add a look/theme to your image prompts.                                               | `None`  |
+| `boosters`     | List[str] | Boosters are an alternative way to add a look/theme to your image prompts.                               | `None`  |
+| `formats`      | List[str] | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc                         | `None`  |
+| `characters`   | List[str] | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                     | `None`  |
+| `scenarios`    | List[str] | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`             | `None`  |
+| `locations`    | List[str] | A list of locations such as `['New York', 'Big Ben']`                                                    | `None`  |
+| **RETURNS**    | `Printer` | The initialized PromptGenerator.                                                                         | -       |
 
 If you don't include any of the arguments above, then defaults will be included within your image prompts.
 
-## &nbsp;
+---
+
+&nbsp;
 
 ### <kbd>properties</kbd>
 
@@ -51,17 +55,77 @@ prompt_model.scenarios # Returns a list of scenarios
 prompt_model.locations # Returns a list of locations
 ```
 
-## &nbsp;
+---
 
-## Resources:
+&nbsp;
 
-- Prompt Generator: https://docs.google.com/spreadsheets/d/1TWYoCaPVPllyoZyjOhnPeojfzgTbppMDhpK_r87-duM/edit
-- Art Movements: https://artsandculture.google.com/category/art-movement?hl=en-GB
-- Artists: https://artsandculture.google.com/category/artist?hl=en-GB
+#### <kbd>method</kbd> `PromptGenerator.generate_single_prompt()`
+
+```python
+prompt_model = PromptGenerator()
+prompt = prompt_model.generate_single_prompt()
+print(f"This is a single prompt: {prompt}")
+```
+
+```python
+prompt_model = PromptGenerator()
+prompt = prompt_model.generate_single_prompt(use_vibe=True)
+print(f"This is a single prompt: {prompt}")
+```
+
+| Argument          | Type | Description                                                                                               | Default |
+| ----------------- | ---- | --------------------------------------------------------------------------------------------------------- | ------- |
+| `style`           | str  | Styles such as fauvism, cubism or abstract                                                                | `None`  |
+| `perspective`     | str  | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
+| `vibe`            | str  | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
+| `booster`         | str  | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
+| `format`          | str  | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
+| `character`       | str  | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
+| `scenario`        | str  | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
+| `location`        | str  | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
+| `use_vibe`        | bool | A boolean to opt into adding a vibe to your image prompt. Defaults to False.                              | `False` |
+| `use_perspective` | bool | A boolean to opt into adding a perspective to your image prompt. Defaults to False.                       | `False` |
+| `use_booster`     | bool | A boolean to opt into adding a booster to your image prompt. Defaults to False.                           | `False` |
+| **RETURNS**       | str  | Returns a single generated text prompt.                                                                   | -       |
 
 ---
 
-# Different parts of what makes a good prompt for AI:
+&nbsp;
+
+#### <kbd>method</kbd> `PromptGenerator.generate_random_prompts()`
+
+```python
+prompt_model = PromptGenerator()
+prompts = prompt_model.generate_random_prompts(number_of_prompts=30)
+print(f"This is a list of random prompts: {prompts}")
+```
+
+```python
+prompt_model = PromptGenerator()
+prompts = prompt_model.generate_random_prompts(number_of_prompts=30, characters=['Donald Duck'], use_vibe=True)
+print(f"This is a list of random prompts: {prompts}")
+```
+
+| Argument          | Type      | Description                                                                                               | Default |
+| ----------------- | --------- | --------------------------------------------------------------------------------------------------------- | ------- |
+| `styles`          | List[str] | Styles such as `['fauvism', 'cubism']`                                                                    | `None`  |
+| `perspectives`    | List[str] | Perspectives about the image prompt such as the angle which the shot has been taken in `['from behind']`. | `None`  |
+| `vibes`           | List[str] | Vibes are a way to add a look/theme to your image prompts.                                                | `None`  |
+| `boosters`        | List[str] | Boosters are an alternative way to add a look/theme to your image prompts.                                | `None`  |
+| `formats`         | List[str] | Formats include `['oil painting'`, `'photo-realistic'`, `'cartoon drawing]'` etc.                         | `None`  |
+| `characters`      | List[str] | Characters such as `['Mickey Mouse', 'Donald Duck']`                                                      | `None`  |
+| `scenarios`       | List[str] | Actions that your characters are taking such as `['Rowing', 'Swimming', 'Eating some food']`              | `None`  |
+| `locations`       | List[str] | A list of locations such as `['New York', 'Big Ben']`                                                     | `None`  |
+| `use_vibe`        | bool      | A boolean to opt into adding a vibe for all your image prompts. Defaults to False.                        | `False` |
+| `use_perspective` | bool      | A boolean to opt into adding a perspectivefor all your image prompts. Defaults to False.                  | `False` |
+| `use_booster`     | bool      | A boolean to opt into adding a booster for all your image prompts. Defaults to False.                     | `False` |
+| **RETURNS**       | List[str] | Returns a list of randomly generated prompts.                                                             | -       |
+
+---
+
+&nbsp;
+
+# What makes part of a good prompt for AI?
 
 ## Locations:
 
@@ -97,6 +161,13 @@ These include for example `from behind`, `from above`, `from the side` etc.
 
 Vibes/Boosters are a different way to describe the style.
 
-```
+---
 
-```
+&nbsp;
+
+## Additional Resources:
+
+- [A visual prompt editing tool](tools.saxifrage.yx)
+- Prompt Generator: https://docs.google.com/spreadsheets/d/1TWYoCaPVPllyoZyjOhnPeojfzgTbppMDhpK_r87-duM/edit
+- Art Movements: https://artsandculture.google.com/category/art-movement?hl=en-GB
+- Artists: https://artsandculture.google.com/category/artist?hl=en-GB
