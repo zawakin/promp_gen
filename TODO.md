@@ -9,3 +9,4 @@ Additional Functionality:
 - Image outpainting + cropping for DALLE and MidJourney.
 - Automatic video creation based on multiple images as a slideshow.
 - Cleaning the grammar of existing prompts using a GPT-3 model.
+- Integrate with GPT-3 to make better prompts.
