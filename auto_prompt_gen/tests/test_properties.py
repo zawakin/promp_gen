@@ -1,5 +1,5 @@
 import pytest
-from prompt_gen import PromptGenerator
+from auto_prompt_gen import PromptGenerator
 
 
 @pytest.fixture

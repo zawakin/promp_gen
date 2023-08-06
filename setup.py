@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 
 def setup_package():
-    package_name = "prompt_gen"
+    package_name = "auto_prompt_gen"
     root = os.path.abspath(os.path.dirname(__file__))
 
     # Read in package meta from about.py
@@ -32,7 +32,7 @@ def setup_package():
         version=about["__version__"],
         license=about["__license__"],
         packages=find_packages(),
-        keywords=["prompt", "generator", "prompt_gen",
+        keywords=["prompt", "generator", "auto_prompt_gen",
                   "ai_art", "art", "dalle", "dalle2", "midjourney", "dalle3"],
         install_requires=['numpy', 'pandas'],
         zip_safe=True,

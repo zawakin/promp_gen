@@ -1,4 +1,4 @@
-# prompt_gen
+# auto_prompt_gen
 
 A python package for automating your Prompt Engineering workflows - [https://github.com/Just-Understanding-Data-Ltd/promp_gen](https://github.com/Just-Understanding-Data-Ltd/promp_gen). This package helps you to get started with creating text to image prompts.
 
@@ -7,7 +7,7 @@ There are several properties and methods that you can use to create prompts. Dat
 ## ⌛️ Installation
 
 ```bash
-pip install prompt_gen
+pip install auto_prompt_gen
 ```
 
 ## 🎛 API
@@ -20,7 +20,7 @@ An instance of `PromptGenerator`, initialized with the default config. Useful as
 shortcut if you don't need to customize initialization.
 
 ```python
-from prompt_gen import PromptGenerator
+from auto_prompt_gen import PromptGenerator
 prompt_model = PromptGenerator()
 ```
 
@@ -45,7 +45,7 @@ If you don't include any of the arguments above, then defaults will be included 
 ### <kbd>properties</kbd>
 
 ```python
-from prompt_gen import PromptGenerator
+from auto_prompt_gen import PromptGenerator
 prompt_model = PromptGenerator()
 prompt_model.styles # Returns a list of styles
 prompt_model.perspectives # Returns a list of perspectives

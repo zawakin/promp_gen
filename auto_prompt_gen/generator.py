@@ -2,7 +2,7 @@ import json
 import pandas as pd
 from typing import List
 import random
-from prompt_gen.util import _validate_all_inputs_are_strings_in_a_list_and_not_empty
+from auto_prompt_gen.util import _validate_all_inputs_are_strings_in_a_list_and_not_empty
 
 
 class PromptGenerator():
@@ -53,40 +53,40 @@ class PromptGenerator():
             self.formats = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
                 formats)
         if characters is None:
-            with open('prompt_gen/character_data/characters.json') as f:
+            with open('auto_prompt_gen/character_data/characters.json') as f:
                 self.characters = json.load(f)
         else:
             self.characters = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
                 characters)
         if scenarios is None:
-            with open('prompt_gen/scenario_data/scenarios.json') as f:
+            with open('auto_prompt_gen/scenario_data/scenarios.json') as f:
                 self.scenarios = json.load(f)
         else:
             self.scenarios = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
                 scenarios)
         if locations is None:
-            with open('prompt_gen/location_data/landmarks.json') as f:
+            with open('auto_prompt_gen/location_data/landmarks.json') as f:
                 self.locations = json.load(f)
         else:
             self.locations = _validate_all_inputs_are_strings_in_a_list_and_not_empty(
                 locations)
 
     def import_prompt_data(self):
-        with open('prompt_gen/prompt-generator.json', 'r') as f:
+        with open('auto_prompt_gen/prompt-generator.json', 'r') as f:
             return json.load(f)
 
     @property
     def landmarks(self) -> List[str]:
-        with open('prompt_gen/location_data/landmarks.json') as f:
+        with open('auto_prompt_gen/location_data/landmarks.json') as f:
             return json.load(f)
 
     @property
     def cities(self) -> List[str]:
-        return pd.read_csv('prompt_gen/location_data/cities.csv')['city'].tolist()
+        return pd.read_csv('auto_prompt_gen/location_data/cities.csv')['city'].tolist()
 
     @property
     def backgrounds(self) -> List[str]:
-        with open('prompt_gen/location_data/backgrounds.json') as f:
+        with open('auto_prompt_gen/location_data/backgrounds.json') as f:
             return json.load(f)
 
     def get_random_index(self, list_to_choose_from: list) -> int:
@@ -118,12 +118,12 @@ class PromptGenerator():
         return self.landmarks[self.get_random_index(self.landmarks)]
 
     def get_random_character(self) -> str:
-        with open('prompt_gen/character_data/characters.json') as f:
+        with open('auto_prompt_gen/character_data/characters.json') as f:
             characters = json.load(f)
         return random.choice(characters)
 
     def get_random_scenario(self) -> str:
-        with open('prompt_gen/scenario_data/scenarios.json') as f:
+        with open('auto_prompt_gen/scenario_data/scenarios.json') as f:
             scenarios = json.load(f)
         return random.choice(scenarios)
 
